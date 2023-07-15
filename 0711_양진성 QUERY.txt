@@ -1,0 +1,14 @@
+SELECT c.customerId, c.customername, SUM(p.price * od.quantity) AS total_purchase
+FROM CUSTOMERS c
+JOIN ORDERS o ON c.customerId = o.customerid
+JOIN Orderdetails od ON o.orderid = od.orderid
+JOIN products p ON od.productid = p.productid
+GROUP BY c.customerId, c.customername;
+
+
+SELECT C.CATEGORYNAME, SUM(OD.QUANTITY)
+FROM CATEGORIES C
+JOIN PRODUCTS P ON C.CATEGORYID=P.CATEGORYID
+JOIN ORDERDETAILS OD ON P.PRODUCTID=OD.PRODUCTID
+GROUP BY C.CATEGORYNAME
+HAVING 2000<=SUM(OD.QUANTITY);
